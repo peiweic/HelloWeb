@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="../DependencyWheel/js/d3.min.js"></script>
+	<script type="text/javascript" src="../DependencyWheel/js/d3.dependencyWheel.js"></script>
+</head>
+<body>
+<p id="target"></p>
+
+<script type="text/javascript">
+	var data;
+	/* = {
+		packageNames: ['Main', 'A', 'B'],
+		matrix: [[0, 1, 1], //Main depends on A and B
+			 [0, 0, 1], // A depends on B
+			 [0, 0, 0]]	// B doesn't depend on A or Main
+		};
+	*/
+	var chart = d3.chart.dependencyWheel();
+	d3.json("dependencyData.json", function(error, json) { 
+		data = json; 
+		d3.select("#target").datum(data).call(chart);
+	});
+	d3.select('#target')
+		.datum(data)
+		.call(chart);
+</script>
+
+</body>
+</html>
